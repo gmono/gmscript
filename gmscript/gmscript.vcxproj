@@ -118,6 +118,7 @@
     <ClInclude Include="MultiVector.h" />
     <ClInclude Include="ScriptCore.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="ToolsFuns.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

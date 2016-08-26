@@ -39,16 +39,9 @@ string &getall(string path)
 //
 //
 //}
-#include "MultiVector.h"
-//这是测试multivector的代码
+#include "Stack.h"
+//这是测试stack的代码
 int main()
 {
-	size_t *pars = new size_t[2]{ 4 * 1024,1024 * 1024 };//两层表 总大小为 4k*1m=4g
-	MultiVector<int64_t> *a = new MultiVector<int64_t>(pars, 2);//创建表
-	MultiVector<int64_t> &as = *a;
-	as[0] = 1;
-	as[1000000] = 800;
 
-	cout << as[0] <<endl<< as[1000000] <<endl<< as[1000];
-	cin.get();
 }
