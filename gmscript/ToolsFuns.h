@@ -4,7 +4,7 @@
 //数组也就是实现了[]运算符的对象
 //返回：实际复制的数量
 template<class DSTArrayType,class SRCArrayType>
-uint64_t dmemcpy(DSTArrayType &dst, uint64_t dstart, SRCArrayType &src, uint64_t sstart, uint64_t len)
+uint64_t dmemcpy(DSTArrayType &dst, uint64_t dstart,SRCArrayType &src, uint64_t sstart, uint64_t len)
 {
 	uint64_t ret = 0; //复制的数量
 	try

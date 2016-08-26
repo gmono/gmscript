@@ -25,7 +25,15 @@ public:
 
 	//栈索引 从栈顶开始 允许负数
 	template<class T>
-	T& operator[](int64_t);
+	T& at(int64_t);
+
+	template<class T>
+	int64_t size()
+	{
+		//栈大小
+		int64_t ret = (downptr - topptr) / sizeof(*(new T()));
+		return ret;
+	}
 private:
 	MultiVector<byte> *data;//数据表
 	int64_t topptr;//栈顶索引
@@ -36,13 +44,14 @@ private:
 };
 
 template<class T>
-inline void Stack::push(T data)
+inline void Stack::push(T var)
 {
 	//入栈 数据类型不定 以byte为单位操作
-	size_t size = sizeof(data);//得到data的大小
+	size_t size = sizeof(var);//得到data的大小
 	//首先操作栈顶
 	topptr -= size;
-	dmemcpy(data, topptr, &data, 0, size);//复制数据
+	byte *varptr = (byte *)&var;//得到指针
+	dmemcpy(*this->data, topptr, varptr, 0, size);//复制数据
 }
 
 template<class T>
@@ -54,24 +63,29 @@ inline T Stack::pop()
 	 //越界检测
 	if (topptr + size > downptr) throw "出栈越界";
 	//
-	dmemcpy(&ret, 0, data, topptr, size);//复制到变量
+	byte *retptr = (byte *)&ret;
+	dmemcpy(retptr, 0, *this->data, topptr, size);//复制到变量
 	topptr += size;//降低栈顶
-	return T();
+	return ret;
 }
 
 template<class T>
 inline T & Stack::top()
 {
-	return data[topptr];
+	int64_t dstptr = topptr + sizeof(*(new T()))-1;//得到最多要取到的索引
+	if (dstptr<0 || dstptr>downptr) throw "栈顶访问越界";
+	return *(T *)&(*data)[topptr];
 	// TODO: 在此处插入 return 语句
 }
 
 template<class T>
-inline T & Stack::operator[](int64_t index)
+inline T & Stack::at(int64_t index)
 {
-	int64_t dstptr = topptr + index;//得到目的索引
+	int64_t size = sizeof(*(new T()));
+	int64_t dstptr = topptr + (size*index);//得到目的索引
+	
 	if (dstptr<0 || dstptr>downptr) throw "随机访问越界";
 	//以上为越界检测
-	return data[dstptr];
+	return *(T *)&(*data)[dstptr];
 	// TODO: 在此处插入 return 语句
 }

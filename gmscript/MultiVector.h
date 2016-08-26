@@ -1,6 +1,7 @@
 #pragma once
 //多重映射表
 #include <iostream>
+#include "ToolsFuns.h"
 template<class ValueType>
 class MultiVector
 {
@@ -42,7 +43,7 @@ MultiVector<ValueType>::MultiVector(size_t *pars, int laycount, bool isinit)
 		//这里保存下层表创建因子
 		this->mlaycount = laycount - 1; //保存下层表参数个数
 		this->mpars = new size_t[this->mlaycount];//创建空间
-		memcpy(this->mpars, pars + 1, sizeof(*(new ValueType()))*this->mlaycount);//复制下层表创建参数
+		dmemcpy(this->mpars, 0, pars, 1, this->mlaycount);//复制下级参数
 		this->misinit = isinit;
 		//
 		isdata = false;//非数据表
