@@ -9,7 +9,8 @@ public:
 	//最后一层才保存基本数据
 	MultiVector(size_t *pars, int laycount,bool isinit=false);
 	~MultiVector();
-
+	ValueType &operator[](uint64_t index);
+private:
 
 	size_t len;//表长度
 	bool isdata; //是否为数据表
@@ -28,7 +29,7 @@ public:
 	int mlaycount;//参数数量 也是下层表的层数
 	//以下为符号重载
 
-	ValueType &operator[](uint64_t index);
+	
 };
 
 template<class ValueType>
