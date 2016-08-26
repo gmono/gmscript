@@ -115,6 +115,7 @@
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MultiVector.h" />
     <ClInclude Include="ScriptCore.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
