@@ -1,4 +1,12 @@
 #pragma once
 #include <vector>
 #include "SCommand.h"
-typedef std::vector<SCommand *> SCommandList; //定义SCommand的数组为命令列表
+#include <map>
+#include "SCValue.h"
+using namespace std;
+class SCommandList
+{
+	//SCommand列表
+	vector<SCommand *> *comlist = nullptr;//SCommand列表
+	map<string, SCValue *> *localvales = nullptr;//这是本地变量表 通过 clistname.objname访问
+};

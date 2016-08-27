@@ -39,11 +39,11 @@
     <Filter Include="ScriptClasses\ScriptExec">
       <UniqueIdentifier>{b1745f77-0933-4f0e-89c2-bb42d8dbad00}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ScriptClasses\ScriptStack">
-      <UniqueIdentifier>{7bbca692-d772-45b1-ab7d-dc94419acb02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ScriptClasses\ScriptHelper">
       <UniqueIdentifier>{8be9023d-84a5-4701-9d60-6602f1f541fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptClasses\Values">
+      <UniqueIdentifier>{371bd206-dd45-4345-909a-26c66b728c3c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +67,6 @@
     </ClCompile>
     <ClCompile Include="ScriptExec.cpp">
       <Filter>ScriptClasses\ScriptExec</Filter>
-    </ClCompile>
-    <ClCompile Include="ScriptStack.cpp">
-      <Filter>ScriptClasses\ScriptStack</Filter>
     </ClCompile>
     <ClCompile Include="ScriptHelper.cpp">
       <Filter>ScriptClasses\ScriptHelper</Filter>
@@ -109,11 +106,11 @@
     <ClInclude Include="ScriptExec.h">
       <Filter>ScriptClasses\ScriptExec</Filter>
     </ClInclude>
-    <ClInclude Include="ScriptStack.h">
-      <Filter>ScriptClasses\ScriptStack</Filter>
-    </ClInclude>
     <ClInclude Include="ScriptHelper.h">
       <Filter>ScriptClasses\ScriptHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="SCValue.h">
+      <Filter>ScriptClasses\SCommands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -117,7 +117,6 @@
     <ClCompile Include="ScriptHelper.cpp" />
     <ClCompile Include="ScriptReader.cpp" />
     <ClCompile Include="ScriptRValues.cpp" />
-    <ClCompile Include="ScriptStack.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -131,8 +130,8 @@
     <ClInclude Include="ScriptHelper.h" />
     <ClInclude Include="ScriptReader.h" />
     <ClInclude Include="ScriptRValues.h" />
-    <ClInclude Include="ScriptStack.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="SCValue.h" />
     <ClInclude Include="ToolsFuns.h" />
   </ItemGroup>
   <ItemGroup>

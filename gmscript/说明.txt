@@ -16,6 +16,55 @@ SCommandList 命令列表类 命令单元的列表
 ScriptExec(SCommandList)为执行器 执行命令列表
 ScriptContext为执行上下文 保存一切数据 提供对ScriptRValues的存储 创建等工作的支持  每一种Reader只能在其中存储一个RValues对象
 同时提供ScriptStack存储和获取功能 以及 其他符号数据存和访问
-ScriptStack为栈操作包装类 管理栈并对外提供接口（模板函数栈操作）
-
 ScriptHelper为辅助类 提供统一访问
+
+关于默认提供者
+push 命令将对象放入默认提供者列表中
+
+下一个需要提供参数的语句如果没有显式指定参数就会使用默认提供者 如果提供了 则默认提供者列表清空
+
+语法说明
+
+make  构造语句  make double as val of 100
+push 放入默认列表
+run 执行命令列表 run fun as sym    run fun to sth
+of 后接参数 run cl of [0 1 2] 使用0 1 2调用cl函数(commandlist)
+set 符号设置函数 例如 set cl as a 设置cl为a的别名  set cl of 0 将cl与实体0 关联
+//连接语义
+as 创建符号 符号必须不存在
+to 不创建符号
+for 符号不存在则创建符号 存在时赋值
+
+以下为原子类型
+int 64位有符号整数 值存储
+double 双精度浮点 值存储
+float256 256位浮点数 引用存储
+bool 逻辑真假
+lbool 线性 大 小 等
+number 泛数字（无限精度浮点数） 引用存储
+
+string 字符串//不可变 可读取 引用存储
+
+clist 命令列表 类 结构 函数都由命令列表表示 标志符号 clist{}  引用存储
+
+byte 字节 值存储
+char 字符 值存储
+
+//以下为特殊类型
+array 标志符号 [] 引用存储
+table 标志符号 {} 引用存储
+
+所有一切需要以引用存储模拟值存储的类型均为只读
+
+//以下为SCommandList实体声明
+
+clist []
+{
+}
+clist {}
+{
+}
+
+参数只能有一个  如果要多个 请使用 dict或array
+
+SCValue 为虚拟机内实体存储变量 其中有 实体数据指针void* 类型名 实体唯一标识符 和实体元数据
