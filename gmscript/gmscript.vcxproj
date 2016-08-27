@@ -111,14 +111,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ScriptCore.cpp" />
+    <ClCompile Include="ScriptAnaly.cpp" />
+    <ClCompile Include="ScriptContext.cpp" />
+    <ClCompile Include="ScriptExec.cpp" />
+    <ClCompile Include="ScriptHelper.cpp" />
+    <ClCompile Include="ScriptReader.cpp" />
+    <ClCompile Include="ScriptRValues.cpp" />
+    <ClCompile Include="ScriptStack.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MultiVector.h" />
-    <ClInclude Include="ScriptCore.h" />
+    <ClInclude Include="SCommand.h" />
+    <ClInclude Include="SCommandExec.h" />
+    <ClInclude Include="SCommandList.h" />
+    <ClInclude Include="ScriptAnaly.h" />
+    <ClInclude Include="ScriptContext.h" />
+    <ClInclude Include="ScriptExec.h" />
+    <ClInclude Include="ScriptHelper.h" />
+    <ClInclude Include="ScriptReader.h" />
+    <ClInclude Include="ScriptRValues.h" />
+    <ClInclude Include="ScriptStack.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="ToolsFuns.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="说明.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

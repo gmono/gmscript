@@ -13,22 +13,69 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ScriptClasses">
+      <UniqueIdentifier>{a3de9db8-4b43-4ea4-b220-b2c0c3939a09}</UniqueIdentifier>
+      <Extensions>
+      </Extensions>
+    </Filter>
+    <Filter Include="ScriptClasses\ScriptAnaly">
+      <UniqueIdentifier>{4e03b862-452f-4214-8be0-b4cd5154c935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptClasses\ScriptContext">
+      <UniqueIdentifier>{e0003804-14b3-4e11-ad9a-da28679fa78f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptClasses\ScriptReader">
+      <UniqueIdentifier>{70d3c625-f973-4beb-926a-3c9a76a70aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptClasses\ScriptReader\Readers">
+      <UniqueIdentifier>{c9420ecd-0a07-496f-a2d5-37c93a896210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptClasses\ScriptReader\RValue">
+      <UniqueIdentifier>{410da15e-6310-4e53-b3b0-bcb64adc1885}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptClasses\SCommands">
+      <UniqueIdentifier>{1c8ca1ec-e8a2-4ffb-b69e-0be36c5b18e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptClasses\ScriptExec">
+      <UniqueIdentifier>{b1745f77-0933-4f0e-89c2-bb42d8dbad00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptClasses\ScriptStack">
+      <UniqueIdentifier>{7bbca692-d772-45b1-ab7d-dc94419acb02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptClasses\ScriptHelper">
+      <UniqueIdentifier>{8be9023d-84a5-4701-9d60-6602f1f541fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ScriptCore.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="Stack.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ScriptContext.cpp">
+      <Filter>ScriptClasses\ScriptContext</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptAnaly.cpp">
+      <Filter>ScriptClasses\ScriptAnaly</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptReader.cpp">
+      <Filter>ScriptClasses\ScriptReader</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptRValues.cpp">
+      <Filter>ScriptClasses\ScriptReader\RValue</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptExec.cpp">
+      <Filter>ScriptClasses\ScriptExec</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptStack.cpp">
+      <Filter>ScriptClasses\ScriptStack</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptHelper.cpp">
+      <Filter>ScriptClasses\ScriptHelper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ScriptCore.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="Stack.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -38,5 +85,38 @@
     <ClInclude Include="ToolsFuns.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ScriptContext.h">
+      <Filter>ScriptClasses\ScriptContext</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptAnaly.h">
+      <Filter>ScriptClasses\ScriptAnaly</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptReader.h">
+      <Filter>ScriptClasses\ScriptReader</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptRValues.h">
+      <Filter>ScriptClasses\ScriptReader\RValue</Filter>
+    </ClInclude>
+    <ClInclude Include="SCommand.h">
+      <Filter>ScriptClasses\SCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="SCommandExec.h">
+      <Filter>ScriptClasses\SCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="SCommandList.h">
+      <Filter>ScriptClasses\SCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptExec.h">
+      <Filter>ScriptClasses\ScriptExec</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptStack.h">
+      <Filter>ScriptClasses\ScriptStack</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptHelper.h">
+      <Filter>ScriptClasses\ScriptHelper</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="说明.txt" />
   </ItemGroup>
 </Project>
