@@ -42,12 +42,24 @@ Runner接受一系列SCExec对象存储于dict中 在解析SCommandList时顺序获得SCommand对象 
 若etypeid不为0 则表示接收一个对应的变量作为请求变量
 
 若解析一个命令时遇到etypeid不为0 则自动递归调用自身解析下一个Command 若下一个Command的stypeid和此command的
-stypeid不相等 则执行错误
+stypeid不相等 则执行错误(执行时检查方案 我更倾向于解析时检查方案)
 
 SCValue结构:
 name [类型名] string
 dataptr [数据指针] void *
 len [数据大小] uint32_t
-metadata [元数据] dict
+ptrsum [引用计数] uint32_t
+metadata [元数据] dict  string->SCVal
 
-待续………………
+SCValue代表一个数据对象的实体 不同的符号可以有同一个SCValue指针
+每多一个对SCValue的符号引用引用计数自动加1
+
+注意：SCValue的实体存储在堆中
+其他位置存储的SCValue都是指针
+任何符号表都是string->SCvalue * 的键值对
+每建立一个对SCValue的指针 就使SCValue实体中的引用计数加1 包括local变量
+
+local变量将SCValue指针存在栈中 通过栈索引引用
+其他变量将SCValue指针存放在符号表中 通过key引用
+
+对引用计数的操作由具体SCExec执行 因此由具体指令决定
