@@ -1,70 +1,53 @@
 
-以命令为核心 以命令列表为主体的脚本语言
+此语言（GM脚本基础结构）是以SCommand为基础 SCommandList为核心 分为量大部 Analy部和Runner部
 
-主体类
-ScriptAnaly(string&) 代码解析类
+SCommand结构：
+stypeid [作为提供者的类型id] number
+scguid [执行者id] sting
+dataptr [命令参数结构指针，具体结构不定，由SCExec自行转换] void *
+etypeid [作为请求者的类型id] number
 
-ScriptReader(string &,int index) 单元读取类 抽象类 派生出各种（关键字 字符串 命令列表）读取器 每个读取器要提供一个或几个SCEXEC对象 
-读取器读取一个命令单元并返回SCommand对象
+SCommandList（简称CL）结构:
+partb [CL参数符号表] dict
+symtb [CL内部符号表] dict (先天具有self和parent成员)
+symtb:self [CL对象自身对象符号表] dict 
+symtb:parent [CL对象上级CL指针] SCommandList *[or dict * 暂未确定] (Run过程中通过此指针访问上级SCommandList的内部符号表)
 
-ScriptRValues() 为读取器数据基础类 抽象类 由具体读取器派生 读取器所有需要保存的数据只能保存在此类对象中 并只能从Context中获取此对象
+SCExec结构：
+exguid [与SCommand中的scguid对应用于得到解析SCommand的执行者] string
+Run(SCValue *) [用于执行一个Command] 函数
 
-SCommand 命令单元 记录命令数据（通用格式） 数据有一个串号和一个参数表指针(void *) 参数表格式不定由具体的SCEXEC对象自行转换
-SCommandExec(SCommand): 命令执行器类  提供执行此命令的函数 抽象类  每个SCEXEC对象都有一个串号与SCommand对象中的串号对应 
+符号类型有var local global
+以及对 self.xxx的设置 属于命令列表专属变量
 
-SCommandList 命令列表类 命令单元的列表
-ScriptExec(SCommandList)为执行器 执行命令列表
-ScriptContext为执行上下文 保存一切数据 提供对ScriptRValues的存储 创建等工作的支持  每一种Reader只能在其中存储一个RValues对象
-同时提供ScriptStack存储和获取功能 以及 其他符号数据存和访问
-ScriptHelper为辅助类 提供统一访问
+CL有参数表声明 参数表符号属于特殊符号
 
-关于默认提供者
-push 命令将对象放入默认提供者列表中
+local 为本地符号 由analy直接转换为栈索引 只能在此CL中引用
+var 为普通符号  存储在symtb中 可以由上级或下级（各层次）CL引用（多层通过parent.parent……或pof 关键字引用)
+global 为全局符号 存储在Context的gstb中
 
-下一个需要提供参数的语句如果没有显式指定参数就会使用默认提供者 如果提供了 则默认提供者列表清空
+Analy部：
+Analy接受一系列SCRead对象存储于dict中 在处于一般模式（0）下时遇到任何非空字符都自动顺序获取其完整单词
+并以单词为key从dict中获得SCRead对象指针
+调用SCRead对象的GetRead函数得到解析后的SCommand对象顺序存储于SCommandList中 以及新的Index
+从此index处继续解析
+重复以上过程
+得到完整的SCommandList
 
-语法说明
+Runner部：
+Runner接受一系列SCExec对象存储于dict中 在解析SCommandList时顺序获得SCommand对象 通过scguid得到SCexec对象
+调用Run函数解析SCommand对象
+注意：Run函数接受一个SCValue对象指针  此对象指针可以为空具体视SCommand的etypeid而定 
+若stypeid不为0 则表示提供一个对应的变量作为提供变量
+若etypeid不为0 则表示接收一个对应的变量作为请求变量
 
-make  构造语句  make double as val of 100
-push 放入默认列表
-run 执行命令列表 run fun as sym    run fun to sth
-of 后接参数 run cl of [0 1 2] 使用0 1 2调用cl函数(commandlist)
-set 符号设置函数 例如 set cl as a 设置cl为a的别名  set cl of 0 将cl与实体0 关联
-//连接语义
-as 创建符号 符号必须不存在
-to 不创建符号
-for 符号不存在则创建符号 存在时赋值
+若解析一个命令时遇到etypeid不为0 则自动递归调用自身解析下一个Command 若下一个Command的stypeid和此command的
+stypeid不相等 则执行错误
 
-以下为原子类型
-int 64位有符号整数 值存储
-double 双精度浮点 值存储
-float256 256位浮点数 引用存储
-bool 逻辑真假
-lbool 线性 大 小 等
-number 泛数字（无限精度浮点数） 引用存储
+SCValue结构:
+name [类型名] string
+dataptr [数据指针] void *
+len [数据大小] uint32_t
+metadata [元数据] dict
 
-string 字符串//不可变 可读取 引用存储
-
-clist 命令列表 类 结构 函数都由命令列表表示 标志符号 clist{}  引用存储
-
-byte 字节 值存储
-char 字符 值存储
-
-//以下为特殊类型
-array 标志符号 [] 引用存储
-table 标志符号 {} 引用存储
-
-所有一切需要以引用存储模拟值存储的类型均为只读
-
-//以下为SCommandList实体声明
-
-clist []
-{
-}
-clist {}
-{
-}
-
-参数只能有一个  如果要多个 请使用 dict或array
-
-SCValue 为虚拟机内实体存储变量 其中有 实体数据指针void* 类型名 实体唯一标识符 和实体元数据
+待续………………
