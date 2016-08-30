@@ -27,6 +27,12 @@
     <ClCompile Include="SCValue.cpp">
       <Filter>ScriptClasses</Filter>
     </ClCompile>
+    <ClCompile Include="SCommand.cpp">
+      <Filter>ScriptClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="SCommandList.cpp">
+      <Filter>ScriptClasses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
@@ -39,6 +45,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="SCValue.h">
+      <Filter>ScriptClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="SCommand.h">
+      <Filter>ScriptClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Array.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SCommandList.h">
+      <Filter>ScriptClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Transport.h">
       <Filter>ScriptClasses</Filter>
     </ClInclude>
   </ItemGroup>

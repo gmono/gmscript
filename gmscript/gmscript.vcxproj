@@ -111,14 +111,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SCommand.cpp" />
+    <ClCompile Include="SCommandList.cpp" />
     <ClCompile Include="SCValue.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
     <ClInclude Include="MultiVector.h" />
+    <ClInclude Include="SCommand.h" />
+    <ClInclude Include="SCommandList.h" />
     <ClInclude Include="SCValue.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="ToolsFuns.h" />
+    <ClInclude Include="Transport.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="说明.txt" />

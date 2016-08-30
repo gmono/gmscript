@@ -2,10 +2,10 @@
 此语言（GM脚本基础结构）是以SCommand为基础 SCommandList为核心 分为量大部 Analy部和Runner部
 
 SCommand结构：
-stypeid [作为提供者的类型id] number
+supply [作为提供者的类型id列表] Array<uint32_t>
 scguid [执行者id] sting
 dataptr [命令参数结构指针，具体结构不定，由SCExec自行转换] void *
-etypeid [作为请求者的类型id] number
+require [作为请求者的类型id列表] Array<uint32_t>
 
 SCommandList（简称CL）结构:
 partb [CL参数符号表] dict
@@ -45,9 +45,10 @@ Runner接受一系列SCExec对象存储于dict中 在解析SCommandList时顺序获得SCommand对象 
 stypeid不相等 则执行错误(执行时检查方案 我更倾向于解析时检查方案)
 
 SCValue结构:
-name [类型名] string
+name [自定义类型名] string
+mvaltype [元类型名] ValueType
 dataptr [数据指针] void *
-len [数据大小] uint32_t
+length [数据大小] uint32_t
 ptrsum [引用计数] uint32_t
 metadata [元数据] dict  string->SCVal
 
@@ -63,3 +64,42 @@ local变量将SCValue指针存在栈中 通过栈索引引用
 其他变量将SCValue指针存放在符号表中 通过key引用
 
 对引用计数的操作由具体SCExec执行 因此由具体指令决定
+
+
+辅助类 定长数组 Array 优势：对象大小只有vector的一半
+
+元类型：
+int uint 有无符号64位整数 
+double 有符号双精度浮点数（64位）
+float256 256位有符号浮点数
+number  无限精度浮点数（大数）
+char 字符(unicode)
+string 字符串(unicode)（不可更改 可以访问）
+dict 映射表
+command 指令
+clist 指令表 {}声明
+array 组 ()声明
+
+//参数表由 []声明
+
+command可以由 make command as xx of "set a"或从clist中取得 xxx[1]得到 如果字符串中有多条指令则只取第一条 后面的忽略
+clist 可以由 make clist as xx of "set a of c"得到或直接声明 make var of {set a of c}
+make clist可以用for关键字声明参数表例如 make clist for [a b c] as xx of "set c of a" 
+make var of clist 方式仅需要使用 make var as t of [a b c]{set c of a}就行了
+clist中的任何一项都是可访问可替换的、
+每一种类型都有各自函数和属性
+
+关键字有 make of as to set for clist loop  if else step (三语句循环关键字 类型 for循环 放在loop后)
+
+dict访问为xxx.xxx形式 也可以用数组形式访问 dict  的属性和函数只能由 dict.xxx of xxx 访问（类型绑定函数和属性的访问方式）
+仅有元数据类型存在类型绑定属性和函数
+
+数组访问为xxx(1) 形式 dict使用此方式访问时必须为xxx("xx")方式 
+
+独立单元说明
+make xxx  独立单元 无提供数据 请求类型：ValueType(int) 说明因为请求类型为int类型 所以任何int类型变量都可以作为后置提供者
+of xxx 独立单元  提供类型：string 一般作为变量名 此独立单元可以直接使用字符串代替
+.....
+
+clist string array number默认采用引用传递 若要使用值传递 可以直接使用val()关键字复制一个匿名对象（匿名对象若不赋值就直接被释放）
+int uint double char float256 command默认采用值传递 若要使用引用传递 可以直接使用 ref()关键字设置其为引用传递

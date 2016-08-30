@@ -40,20 +40,23 @@ string &getall(string path)
 //
 //}
 #include "Stack.h"
+#include <vector>
 //这是测试stack的代码
 int main()
 {
-	Stack stack(4);
-	stack.push<int>(5);
-	stack.push<int>(40);
+	//Stack stack(4);
+	//stack.push<int>(5);
+	//stack.push<int>(40);
 
-	int a = stack.pop<int>();
-	int b = stack.pop<int>();
-	stack.push<int>(5);
-	stack.push<int>(40);
+	//int a = stack.pop<int>();
+	//int b = stack.pop<int>();
+	//stack.push<int>(5);
+	//stack.push<int>(40);
 
-	int c=stack.at<int>(1);
-	int d = stack.at<int>(0);
-	cout << a << endl << b << endl<<c<<endl<<d<<endl;
-	cin.get();
+	//int c=stack.at<int>(1);
+	//int d = stack.at<int>(0);
+	//cout << a << endl << b << endl<<c<<endl<<d<<endl;
+	//cin.get();
+	cout << sizeof(*new vector<uint32_t>());
+	cin. get();
 }
