@@ -21,7 +21,7 @@ Run(SCValue *) [用于执行一个Command] 函数
 以及对 self.xxx的设置 属于命令列表专属变量
 
 CL有参数表声明 参数表符号属于特殊符号
-
+fast 为快速符号 不存在SCvalue指针 数据直接存在于栈中
 local 为本地符号 由analy直接转换为栈索引 只能在此CL中引用
 var 为普通符号  存储在symtb中 可以由上级或下级（各层次）CL引用（多层通过parent.parent……或pof 关键字引用)
 global 为全局符号 存储在Context的gstb中

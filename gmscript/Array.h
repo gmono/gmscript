@@ -36,3 +36,37 @@ struct Array
 		if (dataptr != nullptr) delete[] dataptr;
 	}
 };
+template<class VT>
+class LArray :public Array<VT>
+{
+	LArray(uint32_t start, uint32_t end)
+	{
+		setlimit(start, end-start+1);
+	}
+	Larray(uint32_t start,uint32_t len)
+	{
+		setlimit(start,len );
+	}
+	LArray(Array<VT> &&data):Array<VT>(data)
+	{
+		//move构造
+		mstart = start;
+	}
+	
+
+	//这里放限定数组访问函数
+	//原array为直接访问数据指针
+	VT &operator[](uint32_t index)
+	{
+		if (index<mstart ) throw "限定数组访问错误";
+		return this->dataptr[index + mstart];
+	}
+private:
+	void setlimit(uint32_t start,uint32_t len)
+	{
+		mstart = start;
+		dataptr = new VT[len];//限定数组自动分配空间
+		length = len;
+	}
+	uint32_t mstart;
+};
