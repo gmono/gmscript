@@ -29,6 +29,33 @@ struct Array
 		temp->dataptr = nullptr;//为了不释放数据
 		delete temp;//释放对象 （不会释放数据）
 	}
+	Array(uint32_t size)
+	{
+		setsize(size);
+	}
+	//设置大小 丢弃数据
+	void setsize(uint32_t size)
+	{
+		
+		if (dataptr != nullptr) delete[] dataptr;
+		length = size;
+		dataptr = new T(length);
+	}
+	//设置大小 保留数据
+	void resize(uint32_t size)
+	{
+		if (dataptr != nullptr) {
+			T *tempptr = new T[size];
+			dmemcpy(tempptr, 0, dataptr, 0, size < length ? size : length);
+			delete[] dataptr;
+			length = size;
+		}
+		else
+		{
+			dataptr = new T[size];
+			length = size;
+		}
+	}
 	Array() = default;
 	~Array()
 	{
@@ -52,14 +79,26 @@ class LArray :public Array<VT>
 		//move构造
 		mstart = start;
 	}
-	
+	void setsize(uint32_t size)
+	{
+		if (size < mstart) return;
+		Array *temp = static_cast<Array *>(this);
+		temp->setsize(size);
 
+	}
+	void resize(uint32_t size)
+	{
+		if (size < mstart) return;
+		Array *temp = static_cast<Array *>(this);
+		temp->resize(size)
+			;
+	}
 	//这里放限定数组访问函数
 	//原array为直接访问数据指针
 	VT &operator[](uint32_t index)
 	{
 		if (index<mstart ) throw "限定数组访问错误";
-		return this->dataptr[index + mstart];
+		return this->dataptr[index - mstart];
 	}
 private:
 	void setlimit(uint32_t start,uint32_t len)

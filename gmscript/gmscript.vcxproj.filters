@@ -16,6 +16,12 @@
     <Filter Include="ScriptClasses">
       <UniqueIdentifier>{11e18383-ac3f-4acc-91c4-956461760779}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ScriptClasses\ScriptReader">
+      <UniqueIdentifier>{e9c703c2-0cfa-4f68-9d18-9d42d09b3a7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScriptClasses\ScriptRunner">
+      <UniqueIdentifier>{70338a5f-9806-4fbe-ba16-7d8a21466601}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -32,6 +38,18 @@
     </ClCompile>
     <ClCompile Include="SCommandList.cpp">
       <Filter>ScriptClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="SCAnaly.cpp">
+      <Filter>ScriptClasses\ScriptReader</Filter>
+    </ClCompile>
+    <ClCompile Include="SCReaderBase.cpp">
+      <Filter>ScriptClasses\ScriptReader</Filter>
+    </ClCompile>
+    <ClCompile Include="SCRunner.cpp">
+      <Filter>ScriptClasses\ScriptRunner</Filter>
+    </ClCompile>
+    <ClCompile Include="SCExecBase.cpp">
+      <Filter>ScriptClasses\ScriptRunner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +76,18 @@
     </ClInclude>
     <ClInclude Include="Transport.h">
       <Filter>ScriptClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="SCAnaly.h">
+      <Filter>ScriptClasses\ScriptReader</Filter>
+    </ClInclude>
+    <ClInclude Include="SCReaderBase.h">
+      <Filter>ScriptClasses\ScriptReader</Filter>
+    </ClInclude>
+    <ClInclude Include="SCRunner.h">
+      <Filter>ScriptClasses\ScriptRunner</Filter>
+    </ClInclude>
+    <ClInclude Include="SCExecBase.h">
+      <Filter>ScriptClasses\ScriptRunner</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

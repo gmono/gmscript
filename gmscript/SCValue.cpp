@@ -3,11 +3,12 @@
 
 
 
-SCValue::SCValue(void * ptr, uint32_t len, dict * meta, string name)
+SCValue::SCValue(void * ptr, uint32_t len, ValueType mtype, dict * meta, string name)
 {
 	this->name = name;
 	data.dataptr = (byte *)ptr;
 	data.length = len;
+	mvaltype = mtype;
 	metadata = *meta;//复制元数据
 }
 

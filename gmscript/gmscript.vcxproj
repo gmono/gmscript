@@ -111,16 +111,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SCAnaly.cpp" />
+    <ClCompile Include="SCExecBase.cpp" />
     <ClCompile Include="SCommand.cpp" />
     <ClCompile Include="SCommandList.cpp" />
+    <ClCompile Include="SCReaderBase.cpp" />
+    <ClCompile Include="SCRunner.cpp" />
     <ClCompile Include="SCValue.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
     <ClInclude Include="MultiVector.h" />
+    <ClInclude Include="SCAnaly.h" />
+    <ClInclude Include="SCExecBase.h" />
     <ClInclude Include="SCommand.h" />
     <ClInclude Include="SCommandList.h" />
+    <ClInclude Include="SCReaderBase.h" />
+    <ClInclude Include="SCRunner.h" />
     <ClInclude Include="SCValue.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="ToolsFuns.h" />
