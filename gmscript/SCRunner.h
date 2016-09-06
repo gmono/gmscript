@@ -7,6 +7,6 @@ public:
 	SCRunner();
 	~SCRunner();
 
-	void Run(SCommandList &list);//特殊command由此类处理
+	void Run(SCommandList &list);//此类处理数据引用
 };
 

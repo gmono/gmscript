@@ -18,3 +18,8 @@ SCommandList::SCommandList()
 SCommandList::~SCommandList()
 {
 }
+
+void * SCommandList::GetDataPtr(const string & name)
+{
+	return nullptr;
+}
