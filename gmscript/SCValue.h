@@ -27,6 +27,7 @@ public:
 	SCValue(void *ptr,uint32_t len,ValueType mtype,dict *meta=nullptr,string name=string());
 	~SCValue();
 	SCValue *GetNewPtr();//获取一个指向同一SCValue的指针时只能使用这个函数
+	void DeletePtr();//删除一个对此对象的引用
 	void Scan();//扫描自己的引用计数如果 引用计数为0就释放自己
 	string name; //自定义类型名
 	ValueType mvaltype;//元类型标记

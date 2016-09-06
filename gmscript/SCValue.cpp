@@ -23,6 +23,12 @@ SCValue * SCValue::GetNewPtr()
 	return this;
 }
 
+void SCValue::DeletePtr()
+{
+	this->ptrsum--;
+	if (this->ptrsum == 0) delete this;
+}
+
 void SCValue::Scan()
 {
 	if (this->ptrsum == 0) delete this;

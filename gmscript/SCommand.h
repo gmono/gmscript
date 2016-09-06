@@ -4,9 +4,15 @@
 using namespace std;
 //command本身只是记录信息
 //数据引用为特殊command 请求数据为空 数据指针指向数据实体 提供数据类型为目标数据类型
-//数据引用通常由对栈对象或栈快速对象的引用得到  对于栈对象其scguid为data 快速对象为fast 指针分别指向scvalue和具体数据
+//数据引用通常由对栈对象或栈快速对象的引用得到  对于栈对象其scguid为data 快速对象为fast 指针分别指向scvalue和fscval
 //对符号表数据的引用 scguid为"sym” 数据指针指向string对象 内容为符号名字
 //数据引用的处理scommand由执行器完成
+struct fscval
+{
+	//此为快速数据引用的结构
+	ValueType type;//数据类型
+	void *data;//数据指针
+};
 class SCommand
 {
 public:
